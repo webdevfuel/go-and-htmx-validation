@@ -21,8 +21,10 @@ func main() {
 			Name: r.FormValue("name"),
 		}
 		user.AddUser(u)
-		component := template.User(u)
-		component.Render(r.Context(), w)
+		userComponent := template.User(u)
+		userComponent.Render(r.Context(), w)
+		formComponent := template.Form()
+		formComponent.Render(r.Context(), w)
 	})
 	http.ListenAndServe("localhost:3000", r)
 }
