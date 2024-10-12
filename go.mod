@@ -7,4 +7,7 @@ require (
 	github.com/go-ozzo/ozzo-validation/v4 v4.3.0
 )
 
-require gopkg.in/yaml.v3 v3.0.1 // indirect
+require (
+	github.com/go-playground/form v3.1.4+incompatible // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
+)
