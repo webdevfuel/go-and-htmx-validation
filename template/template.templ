@@ -1,0 +1,32 @@
+package template
+
+import (
+	"github.com/webdevfuel/go-and-htmx-validation/template/layout"
+	"github.com/webdevfuel/go-and-htmx-validation/user"
+)
+
+templ Users(users []user.User) {
+	@layout.Layout() {
+		@Form()
+		<div class="space-y-2 mt-4" id="users">
+			for _, user := range users {
+				@User(user)
+			}
+		</div>
+	}
+}
+
+templ User(user user.User) {
+	<div class="w-full border border-neutral-700 rounded-lg shadow-sm p-2">
+		<p class="text-neutral-100">{ user.ID }</p>
+		<p class="text-neutral-100">{ user.Name }</p>
+	</div>
+}
+
+templ Form() {
+	<form hx-post="/users" hx-target="#users" hx-swap="beforeend" class="space-y-2">
+		<input type="text" id="id" name="id" placeholder="ID" class="border border-neutral-700 bg-neutral-800 text-neutral-100 focus:ring-2 focus:ring-neutral-600 focus:ring-offset-2 focus:ring-offset-neutral-900 focus:border-neutral-700 rounded-lg w-full block"/>
+		<input type="text" id="name" name="name" placeholder="Name" class="border border-neutral-700 bg-neutral-800 text-neutral-100 focus:ring-2 focus:ring-neutral-600 focus:ring-offset-2 focus:ring-offset-neutral-900 focus:border-neutral-700 rounded-lg w-full block"/>
+		<button class="rounded-lg w-full bg-blue-700 hover:bg-blue-900 p-2 text-neutral-100 outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-neutral-900">Add User</button>
+	</form>
+}
